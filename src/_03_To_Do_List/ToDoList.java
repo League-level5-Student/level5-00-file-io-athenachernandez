@@ -1,10 +1,15 @@
 package _03_To_Do_List;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class ToDoList {
+public class ToDoList implements ActionListener {
 	/*
 	 * Create a program with five buttons, add task, view tasks, remove task, save list, and load list. 
 	 *
@@ -33,8 +38,9 @@ public class ToDoList {
 	JButton removeTask;
 	JButton saveList;
 	JButton loadList;
+	ArrayList<String> tasks = new ArrayList<String>();
 	
-	public ToDoList() {
+	public void run() {
 		frame = new JFrame();
 		panel = new JPanel();
 		addTask = new JButton();
@@ -51,6 +57,40 @@ public class ToDoList {
 		panel.add(loadList);
 		
 		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		addTask.addActionListener(this);
+		viewTasks.addActionListener(this);
+		removeTask.addActionListener(this);
+		saveList.addActionListener(this);
+		loadList.addActionListener(this);
+		addTask.setText("Add Task");
+		viewTasks.setText("View Tasks");
+		removeTask.setText("Remove Tasks");
+		saveList.setText("Save List");
+		loadList.setText("Load List");
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JButton buttonClicked = (JButton) e.getSource();
+		if (buttonClicked == addTask) {
+			String task = JOptionPane.showInputDialog("What's your task?");
+			tasks.add(task);
+		} else if (buttonClicked == viewTasks) {
+			String text = "";
+			for (int i = 0; i < tasks.size(); i++) {
+				text += tasks.get(i);
+				text += "\n";
+			}
+			JOptionPane.showMessageDialog(null, text);
+		} else if (buttonClicked == removeTask) {
+			
+		} else if (buttonClicked == saveList) {
+			
+		} else if (buttonClicked == loadList) {
+			
+		}
 		
 	}
 }
