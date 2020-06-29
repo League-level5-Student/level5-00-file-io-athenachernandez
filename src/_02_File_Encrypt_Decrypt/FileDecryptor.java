@@ -57,3 +57,6 @@ public class FileDecryptor {
 		}
 	}
 }
+
+
+//Copyright © 2019 Athena Hernández
